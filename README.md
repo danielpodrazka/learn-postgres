@@ -3,15 +3,13 @@
 
 This repo can be opened in a [Codespaces](https://docs.github.com/en/codespaces/overview) - a development environment hosted in the cloud. You can open this repo in a [browser](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace-for-a-repository) or IDE like [VS Code](https://code.visualstudio.com/docs/remote/codespaces) with the [GitHub Codespaces extension](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces).
 
-## Running the sample
+## Loading yt_comments into your local database
 
-1. Copy *.env.devcontainer* to *.env*.
+Run following command in your Terminal and follow instructions.
 
-2. Start the web app:
-
-  ```
-  uvicorn main:app --reload
-  ```
+```bash
+python load_data.py
+```
 
 ## Pydantic and SQLAlchemy
 
