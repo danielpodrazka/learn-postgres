@@ -5,7 +5,7 @@ This repo can be opened in a [Codespaces](https://docs.github.com/en/codespaces/
 
 ## Loading yt_comments into your local database
 
-Run following command in your Terminal and follow instructions.
+Run following command in your terminal and follow instructions.
 
 ```bash
 python load_data.py
