@@ -1,43 +1,12 @@
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 import pandas as pd
 import os
-import logging
-import shutil
 import re
-
-
-def logger_init(name):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
-
-    if not logger.handlers:
-        handler = logging.StreamHandler()
-        handler.setLevel(logging.INFO)
-        logger.addHandler(handler)
-
-    return logger
-
-
-def env_init():
-    load_dotenv(".env")
-    if "DBUSER" not in os.environ:
-        logger.info("Creating .env file using .env.devcontainer file")
-        shutil.copy(".env.devcontainer", ".env")
-        load_dotenv(".env")
+from utils import logger_init, env_init, database_uri
 
 
 logger = logger_init(__name__)
 env_init()
-
-
-def database_uri():
-    dbuser = os.environ["DBUSER"]
-    dbpass = os.environ["DBPASS"]
-    dbhost = os.environ["DBHOST"]
-    dbname = os.environ["DBNAME"]
-    database_uri = f"postgresql://{dbuser}:{dbpass}@{dbhost}/{dbname}"
-    return database_uri
 
 
 def get_table_columns(df_cols: list[str], existing_cols: set[str] = set()):
@@ -67,7 +36,7 @@ def get_table_columns(df_cols: list[str], existing_cols: set[str] = set()):
 
 def load_data(csv_filename: str = "yt_comments_data.csv"):
     tablename = os.path.splitext(csv_filename)[0]
-    df = pd.read_csv(os.path.join("/workspace/", "data/", csv_filename))
+    df = pd.read_csv(os.path.join("data", csv_filename))
     logger.info(f"Loaded {csv_filename=} into a Dataframe:")
     logger.info(df.info())
     df.columns = get_table_columns(df.columns)
@@ -81,7 +50,7 @@ def load_data(csv_filename: str = "yt_comments_data.csv"):
 
 
 def get_csv_files():
-    data_dir = os.path.join("/workspace/", "data/")
+    data_dir = "data"
     csv_files = [f for f in os.listdir(data_dir) if f.endswith(".csv")]
     return csv_files
 
