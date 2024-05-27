@@ -6,3 +6,4 @@ python-dotenv==1.0.0
 SQLAlchemy==2.0.12
 faker==18.7.0
 pandas==2.2.2
+sqlfluff==3.0.7
